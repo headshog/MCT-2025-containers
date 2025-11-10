@@ -36,6 +36,10 @@ def get_redis_client():
     except Exception:
         return None
 
+@app.get("/")
+def root():
+    return "Web server is running!"
+
 @app.get("/ping")
 async def ping(request: Request):
     ip = request.client.host if request.client else "unknown"
