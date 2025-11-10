@@ -37,7 +37,7 @@ jobs:
           timeout=60
           while true; do
             docker compose ps --services --filter "status=exited" | grep -w db-init
-            if ["$?" = "0" ]; then
+            if [ "$?" = "0" ]; then
               echo "db-init finished"
               exit 0
             fi
