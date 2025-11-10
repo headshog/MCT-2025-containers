@@ -19,6 +19,9 @@ REDIS_PORT = int(os.getenv("REDIS_PORT", 6379))
 REDIS_KEY = os.getenv("REDIS_KEY", "visits_count")
 REDIS_TTL = int(os.getenv("REDIS_TTL", 0))
 
+# dev or prod
+APP_ENV = os.getenv("APP_ENV", "prod")
+
 def get_conn():
     return psycopg2.connect(
         host=DB_HOST,
@@ -74,6 +77,9 @@ async def ping(request: Request):
 
 @app.get("/visits", response_class=PlainTextResponse)
 async def visits():
+    if APP_ENV == "dev":
+        return "-1"
+
     # try redis first
     r = get_redis_client()
     if r:

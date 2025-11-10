@@ -66,5 +66,3 @@ services:
 
 volumes:
   pgdata:
-
-

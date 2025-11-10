@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Start services
-        run: docker compose up -d
+        run: docker compose -f docker-compose-prod.yml up -d
 
       - name: Wait for Redis to be ready
         run: |
